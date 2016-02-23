@@ -30,18 +30,6 @@ void affectFace(PImage img, float sentiment) {
 void setup(){
   size(1000, 1000);
   
-  
-  // TODO: step one-- parse JSON, get all tweets. For each tweet,
-  // use the canvas.addFace(tweet) method to add to the TreeMap.
-  // EXAMPLE: canvas.addFace("I have no friends");
-  
-  // TODO: step two-- for each tweet, lookup the face using
-  // canvas.lookupFace(tweet) and the processFace(face) method. Finally,
-  // use the image(...) cmd to add to the actual canvas.
-  // EXAMPLE: image(processFace(canvas.lookupFace("I have no friends")), xCoor, yCoor)
-  // note: consider writing a function to generate a size based on sentiment.
-  // note: use randomCoordinates() to get a pair of random (x,y) values for faces (see Entry_Pair class).
-  
   faces = new ArrayList<PImage>(numFaces);
   
   // Draw ONCE
@@ -60,5 +48,5 @@ void setup(){
 }
 
 void draw() {
-  // pass
+  // Do we leave the faces static? Or redraw them everytime...
 }
