@@ -18,12 +18,15 @@ Entry_Pair<Integer, Integer> randomCoordinates() {
 float getSentiment() {
   // We have yet to load the sentiment data, so this
   // is a placeholder until that gets integrated...
-  // returns a float btwn -1 and 1
+  
+  // Min-max scaling is performed by val * (max-min) + min
+  // In this case, max is 1.0, min is -1.0, so this returns
+  // a float between negative 1 and 1.
   return seed.nextFloat() * (1.0 - -1.0) + -1.0;
 }
 
 void affectFace(PImage img, float sentiment) {
-  // TODO
+  // TODO -- JUHEE EDIT THIS
   // do some logic here to img to change its appearance
 }
 
