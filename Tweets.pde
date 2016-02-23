@@ -1,3 +1,4 @@
+JSONArray tweets;
 
 void jsonToTxt() {
     
@@ -8,7 +9,7 @@ void jsonToTxt() {
   JSONObject jsonFile = loadJSONObject("data/KanyeTweets.json");
   
   // Get the array of tweet objects from the JSON
-  JSONArray tweets = jsonFile.getJSONArray("Tweets");
+  tweets = jsonFile.getJSONArray("Tweets");
 
   // Iterate through each tweet, and print the text to file
   for(int i = 0; i < tweets.size(); i++) {
@@ -25,4 +26,11 @@ void initWordCram() {
       .fromTextFile("data/KayneTweets.txt")
       .sizedByWeight(10, 90)
       .withColors(color(0, 250, 200), color(30), color(170, 230, 200));
+}
+
+float getSentiment(int tweetNumber) {
+  // returns
+  // a float between negative 1 and 1.
+  JSONObject tweet = tweets.getJSONObject(tweetNumber);
+  return tweet.getFloat("SentimentScore");
 }

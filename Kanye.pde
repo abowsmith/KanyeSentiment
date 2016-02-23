@@ -19,12 +19,6 @@ Entry_Pair<Integer, Integer> randomCoordinates() {
   return new Entry_Pair<Integer, Integer>(x, y);
 }
 
-float getSentiment(int tweetNumber) {
-  // returns
-  // a float between negative 1 and 1.
-  return seed.nextFloat() * (1.0 - -1.0) + -1.0;
-}
-
 void affectFace(PImage img, float sentiment) {
   // TODO -- JUHEE EDIT THIS
   // do some logic here to img to change its appearance
