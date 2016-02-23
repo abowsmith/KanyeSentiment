@@ -1,6 +1,5 @@
 import java.util.Random;
 
-PImage img;
 final Random seed = new Random();
 final int border = 364; // the height of the img...
 final int numFaces = 150;
@@ -26,15 +25,6 @@ float getSentiment() {
 void affectFace(PImage img, float sentiment) {
   // TODO
   // do some logic here to img to change its appearance
-}
-
-//Sets method for changing face based on sentiment.
-
-void processFace(PImage face) {
-  // TODO: write logic to affect the face's rotation, size
-  // and color contingent on the sentiment analysis performed.
-  // Since face is a reference, it should be mutable and
-  // shouldn't have to be returned, but that may not be the case...
 }
 
 void setup(){
