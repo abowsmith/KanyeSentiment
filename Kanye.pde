@@ -2,8 +2,10 @@ import java.util.Random;
 
 PImage img;
 final Random seed = new Random();
-Canvas_Builder canvas = new Canvas_Builder();
 final int border = 364; // the height of the img...
+final int numFaces = 150;
+String file_path = "Kanye_Talking.png";
+ArrayList<PImage> faces;
 
 // Creates new random (x,y) coordinates for Kanye face
 // To access x, use .getKey(); to access y, use .getValue().
@@ -12,6 +14,18 @@ Entry_Pair<Integer, Integer> randomCoordinates() {
   int x = Math.abs(seed.nextInt(width - border));
   int y = Math.abs(seed.nextInt(height - border));
   return new Entry_Pair<Integer, Integer>(x, y);
+}
+
+float getSentiment() {
+  // We have yet to load the sentiment data, so this
+  // is a placeholder until that gets integrated...
+  // returns a float btwn -1 and 1
+  return seed.nextFloat() * (1.0 - -1.0) + -1.0;
+}
+
+void affectFace(PImage img, float sentiment) {
+  // TODO
+  // do some logic here to img to change its appearance
 }
 
 //Sets method for changing face based on sentiment.
@@ -38,12 +52,23 @@ void setup(){
   // note: consider writing a function to generate a size based on sentiment.
   // note: use randomCoordinates() to get a pair of random (x,y) values for faces (see Entry_Pair class).
   
-
-  canvas.addFace("I have no friends");
-  Entry_Pair<Integer, Integer> coordinates = randomCoordinates();
-  image(canvas.lookupFace("I have no friends"), coordinates.getKey(), coordinates.getValue());
+  faces = new ArrayList<PImage>(numFaces);
+  
+  // Draw ONCE
+  PImage img;
+  float sentiment;
+  Entry_Pair<Integer, Integer> coordinates;
+  for(int i = 0; i < numFaces; i++) {
+    System.out.println(i);
+    img = loadImage(file_path);
+    
+    sentiment = getSentiment();
+    affectFace(img, sentiment);
+    coordinates = randomCoordinates();
+    image(img, coordinates.getKey(), coordinates.getValue());
+  }
 }
 
 void draw() {
-  // TODO
+  // pass
 }
