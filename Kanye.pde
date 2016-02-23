@@ -1,7 +1,8 @@
 import java.util.Random;
 
 final Random seed = new Random();
-final int border = 364; // the height of the img...
+final int height_border = 325; // the height of the img...
+final int width_border = 215;
 final int numFaces = 150;
 String file_path = "Kanye_Talking.png";
 ArrayList<PImage> faces;
@@ -10,8 +11,8 @@ ArrayList<PImage> faces;
 // To access x, use .getKey(); to access y, use .getValue().
 
 Entry_Pair<Integer, Integer> randomCoordinates() {
-  int x = Math.abs(seed.nextInt(width - border));
-  int y = Math.abs(seed.nextInt(height - border));
+  int x = Math.abs(seed.nextInt(width - width_border));
+  int y = Math.abs(seed.nextInt(height - height_border));
   return new Entry_Pair<Integer, Integer>(x, y);
 }
 
