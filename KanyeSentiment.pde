@@ -1,55 +1,21 @@
-//import java.util.Random;
+// Import Wordcram, install into Processing library (default will be
+// home/documents folder=>Processing/libraries from http://wordcram.org
+import wordcram.*;
+import wordcram.text.*;
 
-//final Random seed = new Random();
-//final int height_border = 325; // the height of the img...
-//final int width_border = 215;
-//final int numFaces = 150;
-//String file_path = "KanyeNoSmile.png";
-//ArrayList<PImage> faces;
-//int redCount;
-//int blueCount;
-//// Creates new random (x,y) coordinates for Kanye face
-//// To access x, use .getKey(); to access y, use .getValue().
-
-//Entry_Pair<Integer, Integer> randomCoordinates() {
-//  int x = Math.abs(seed.nextInt(width - width_border));
-//  int y = Math.abs(seed.nextInt(height - height_border));
-//  return new Entry_Pair<Integer, Integer>(x, y);
-//}
-
-//float getSentiment(int tweetNumber) {
-//  // returns
-//  // a float between negative 1 and 1.
-//  return seed.nextFloat() * (1.0 - -1.0) + -1.0;
-//}
-
-//void affectFace(PImage img, float sentiment) {
-//  // TODO -- JUHEE EDIT THIS
-//  // do some logic here to img to change its appearance
-//  img.resize(150,200);
-//  if(sentiment < 0)
-//  {
-//    tint(200, 50, 50);
-//    rotate(random(6));
-//    redCount++;
-//  }
-//  else if(sentiment > 0)
-//  {
-//    tint(25, 25, 250);
-//    rotate(random(6));
-//    blueCount++;
-//  }
-//}
-
+WordCram wordCram;
 PImage img;
 int faceCount = 0;
+int drawMode = 1; // by default, draw faces
 
 void setup(){
   size(1000, 1000);
+  background(255);
   
   faces = new ArrayList<PImage>(numFaces);
-  
-  // Draw ONCE
+
+  jsonToTxt();
+  initWordCram();
 
 }
 
@@ -58,26 +24,51 @@ void draw() {
   Entry_Pair<Integer, Integer> coordinates;
   
   faceCount++;
-  if (faceCount <= numFaces) {
+  if (drawMode == 1) {
+    if (faceCount <= numFaces) {
   
-    System.out.println(faceCount);
-    img = loadImage(file_path);
-    
-    delay(50);
-    
-    sentiment = getSentiment(faceCount);
-    affectFace(img, sentiment);
-    coordinates = randomCoordinates();
-    image(img, coordinates.getKey(), coordinates.getValue());
+      System.out.println(faceCount);
+      img = loadImage(file_path);
+      
+      delay(50);
+      
+      sentiment = getSentiment(faceCount);
+      affectFace(img, sentiment);
+      coordinates = randomCoordinates();
+      image(img, coordinates.getKey(), coordinates.getValue());
+    }
+    else {
+
+ // Draw the bar chart of positive/negative tweets 
+      noStroke();
+      rect(10,30,redCount,30); 
+      fill(250, 50, 50);
+         
+      rect(10,70, blueCount,30); 
+      fill(50, 50, 250);
+    }
+}
+  else { // Draw WordCloud
+    if (wordCram.hasMore()) {
+      wordCram.drawNext();
+    }
+  }
+}
+
+// Draw WordCloud on MouseClick
+void mouseClicked() {
+  if (drawMode == 1)
+  {
+    drawMode = 2;
+    colorMode(HSB);
+
+    initWordCram();
   }
   else {
-  
- // Draw the bar chart of positive/negative tweets 
-   noStroke();
-   rect(10,30,redCount,30); 
-   fill(250, 50, 50);
-     
-   rect(10,70, blueCount,30); 
-   fill(50, 50, 250);
+    drawMode = 1;
+    colorMode(RGB);
+    faceCount = 0; // start redrawing faces
   }
+
+  background(255);
 }
