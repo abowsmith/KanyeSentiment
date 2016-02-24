@@ -7,12 +7,13 @@ Entry_Pair<Integer, Integer> randomCoordinates() {
   return new Entry_Pair<Integer, Integer>(x, y);
 }
 
+// Color in the face if we are able to determine if it is positive/negative from analysis done in
+// in Python when we gathered the tweets up-front.
 void affectFace(PImage img, float sentiment) {
-  // TODO -- JUHEE EDIT THIS
-  // do some logic here to img to change its appearance
   img.resize(150,200);
   if(sentiment < 0)
   {
+    // Red if negative tweet, blue if positive
     tint(200, 50, 50);
     rotate(random(6));
     redCount++;
