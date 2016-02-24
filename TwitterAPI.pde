@@ -25,7 +25,7 @@ void recentTweets() {
 
       // Just print to the console. For visuals, we need sentiment (done in Python library, and
       // for WordCloud, more tweets than we can pull realtime
-      println(user + "(" + time + "): " + text);
+      println(user + "(" + time + "): " + text + "\n");
     }
   }
   catch (TwitterException te) {

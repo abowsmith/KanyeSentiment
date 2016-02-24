@@ -38,16 +38,16 @@ void draw() {
   if (drawMode == 1) {
     if (faceCount <= numFaces) {
   
-      System.out.println(faceCount);
       img = loadImage(file_path);
-      
-      delay(50);
-      
+
       sentiment = getSentiment(faceCount);
       affectFace(img, sentiment);
       coordinates = randomCoordinates();
       image(img, coordinates.getKey(), coordinates.getValue());
-    }
+
+      // Wait for 50ms before drawing the next head
+      delay(50);
+  }
     else {
 
  // Draw the bar chart of positive/negative tweets 
