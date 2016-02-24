@@ -1,8 +1,3 @@
-import twitter4j.*;
-
-//Build an ArrayList to hold all of the words that we get from the imported tweets
-ArrayList<String> recentTweets = new ArrayList();
- 
 void recentTweets() {
   
   //Credentials
@@ -23,18 +18,15 @@ void recentTweets() {
     ArrayList tweets = (ArrayList) result.getTweets();
  
     for (int i = 0; i < tweets.size(); i++) {
-      Status t = (Status) tweets.get(i);
-      String msg = t.getText();
-      println(msg);
-       
-      //Break the tweet into words
-      String[] input = msg.split(" ");
-      for (int j = 0;  j < input.length; j++) {
+      Status tweet = (Status) tweets.get(i);
+      String text = tweet.getText();
+      Date time = tweet.getCreatedAt();
+      String user = tweet.getUser().getName();
 
-        //Put each word into the words ArrayList
-       //words.add(input[j]);
-      }
-    };
+      // Just print to the console. For visuals, we need sentiment (done in Python library, and
+      // for WordCloud, more tweets than we can pull realtime
+      println(user + "(" + time + "): " + text);
+    }
   }
   catch (TwitterException te) {
     println("Couldn't connect: " + te);

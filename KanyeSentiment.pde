@@ -1,23 +1,33 @@
-// Import Wordcram, install into Processing library (default will be
-// home/documents folder=>Processing/libraries from http://wordcram.org
+// Import Wordcram from http://wordcram.org
+// Import twitter4j from http://twitter4j.org
 import wordcram.*;
 import wordcram.text.*;
+import java.util.*;
+import twitter4j.*;
 
 WordCram wordCram;
 PImage img;
 int faceCount = 0;
 int drawMode = 1; // by default, draw faces
+processing.data.JSONArray tweets;
+final Random seed = new Random();
+final int height_border = 325; // the height of the img...
+final int width_border = 215;
+final int numFaces = 150;
+String file_path = "Kanye_Talking.png";
+ArrayList<PImage> faces;
+
+int redCount;
+int blueCount;
 
 void setup(){
-  recentTweets();
-  size(1000, 1000);
-  background(255);
-  
   faces = new ArrayList<PImage>(numFaces);
 
+  recentTweets();
   jsonToTxt();
-  initWordCram();
-
+  
+  size(1000, 1000);
+  background(255);
 }
 
 void draw() {

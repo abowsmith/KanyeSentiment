@@ -1,5 +1,3 @@
-processing.data.JSONArray tweets;
-
 void jsonToTxt() {
     
   // Open PrintWriter to output the tweets to text file
