@@ -9,6 +9,7 @@ int faceCount = 0;
 int drawMode = 1; // by default, draw faces
 
 void setup(){
+  recentTweets();
   size(1000, 1000);
   background(255);
   

@@ -1,4 +1,4 @@
-JSONArray tweets;
+processing.data.JSONArray tweets;
 
 void jsonToTxt() {
     
@@ -6,14 +6,14 @@ void jsonToTxt() {
   PrintWriter output = createWriter("data/KayneTweets.txt");
 
   // Load the JSON file as a JSON object
-  JSONObject jsonFile = loadJSONObject("data/KanyeTweets.json");
+  processing.data.JSONObject jsonFile = loadJSONObject("data/KanyeTweets.json");
   
   // Get the array of tweet objects from the JSON
   tweets = jsonFile.getJSONArray("Tweets");
 
   // Iterate through each tweet, and print the text to file
   for(int i = 0; i < tweets.size(); i++) {
-    JSONObject tweet = tweets.getJSONObject(i);
+    processing.data.JSONObject tweet = tweets.getJSONObject(i);
     output.println(tweet.getString("Text"));
   }
   output.flush();
@@ -31,6 +31,6 @@ void initWordCram() {
 float getSentiment(int tweetNumber) {
   // returns
   // a float between negative 1 and 1.
-  JSONObject tweet = tweets.getJSONObject(tweetNumber);
+  processing.data.JSONObject tweet = tweets.getJSONObject(tweetNumber);
   return tweet.getFloat("SentimentScore");
 }
